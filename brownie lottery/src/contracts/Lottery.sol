@@ -83,7 +83,7 @@ contract Lottery is VRFConsumerBase, Ownable {
         // And since solidity cannot deal with decimals we multiply by 10**18 first then divide the result by price
         uint256 costToEnter = (usdEntryFee * (10**18)) / adjustedPrice;
 
-        // return costToEnter;
+        // CostToEnter price in wei
         return costToEnter;
     }
 
