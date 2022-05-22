@@ -34,6 +34,8 @@ contract Lottery is VRFConsumerBase, Ownable {
     address payable public recentWinner;
     uint256 recentRandomness;
 
+    event RequestedRandomness(bytes32 requestId);
+
     constructor(
         address _priceFeedAddress,
         address _vrfCoordinator,
@@ -122,6 +124,9 @@ contract Lottery is VRFConsumerBase, Ownable {
         // We are requesting randomness here
         // Contract will use callback fulfillRandomness() to fulfil the request
         bytes32 requestId = requestRandomness(keyhash, fee);
+
+        // Basically logs/print for smart contracts
+        emit RequestedRandomness(requestId);
     }
 
     function fulfillRandomness(bytes32 requestId, uint256 randomness)
